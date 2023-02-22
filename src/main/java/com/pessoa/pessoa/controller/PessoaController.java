@@ -29,24 +29,11 @@ public class PessoaController {
 	private PessoaService service;
 
 	@GetMapping
-	public ResponseEntity<List<Pessoa>> findAll(){
+	public ResponseEntity<List<Pessoa>> findAll() {
 		List<Pessoa> list = service.findAll();
 		List<PessoaDTO> listDTO = list.stream().map(obj -> new PessoaDTO(obj)).collect(Collectors.toList());
 		return ResponseEntity.ok().body(list);
 	}
-
-//	@GetMapping(value = "/", produces = "application/Json")
-//	public ResponseEntity<List<Pessoa>> pessoa() {
-//		List<Pessoa> list = pessoaRepository.findAll();
-//		return new ResponseEntity<List<Pessoa>>(list, HttpStatus.OK);
-//	}
-
-//	@GetMapping
-//	public ResponseEntity<List<PessoaDTO>> findAll() {
-//		List<Pessoa> list = service.findAll();
-//		List<PessoaDTO> listDTO = list.stream().map(obj -> new PessoaDTO(obj)).collect(Collectors.toList());
-//		return ResponseEntity.ok().body(listDTO);
-//	}
 
 	@GetMapping(value = "/{id}")
 	public ResponseEntity<Pessoa> findById(@PathVariable Long id) {
@@ -55,24 +42,16 @@ public class PessoaController {
 
 	}
 
-//	@PostMapping
-//	public ResponseEntity<Pessoa> insert(@RequestBody Pessoa obj) {
-//		obj = service.insert(obj);
-//		URI uri = ServletUriComponentsBuilder.fromCurrentRequest().path("/{id}").buildAndExpand(obj.getId()).toUri();
-//		return ResponseEntity.created(uri).body(obj);
-//	}
-	
 	@PostMapping(value = "/", produces = "application/Json")
-	public ResponseEntity<Pessoa> cadastrar(@RequestBody Pessoa pessoa){
-		
+	public ResponseEntity<Pessoa> cadastrar(@RequestBody Pessoa pessoa) {
+
 		for (int pos = 0; pos < pessoa.getEnderecos().size(); pos++) {
 			pessoa.getEnderecos().get(pos).setPessoa(pessoa);
 		}
 		Pessoa pessoasalvo = service.insert(pessoa);
-		return new ResponseEntity<Pessoa>(pessoasalvo,HttpStatus.OK);
-			
+		return new ResponseEntity<Pessoa>(pessoasalvo, HttpStatus.OK);
+
 	}
-	
 
 	@DeleteMapping(value = "/{id}")
 	public ResponseEntity<Void> delete(@PathVariable Long id) {
@@ -85,5 +64,5 @@ public class PessoaController {
 		obj = service.update(id, obj);
 		return ResponseEntity.ok().body(obj);
 	}
-	
+
 }
