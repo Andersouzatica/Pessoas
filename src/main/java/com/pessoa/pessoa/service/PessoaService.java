@@ -9,7 +9,6 @@ import org.springframework.stereotype.Service;
 
 import com.pessoa.pessoa.entity.Pessoa;
 import com.pessoa.pessoa.exceptions.ResourceNotFoundException;
-import com.pessoa.pessoa.service.repository.EnderecoRepository;
 import com.pessoa.pessoa.service.repository.PessoaRepository;
 
 import jakarta.persistence.EntityNotFoundException;
@@ -19,7 +18,7 @@ public class PessoaService {
 
 	@Autowired
 	private PessoaRepository pessoaRepository;
-	
+
 //	public List<Pessoa> findAll() {
 //		return pessoaRepository.findAll();
 //	}

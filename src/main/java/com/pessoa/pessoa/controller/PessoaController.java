@@ -86,14 +86,4 @@ public class PessoaController {
 		return ResponseEntity.ok().body(obj);
 	}
 	
-	@PostMapping(value = "/", produces = "application/Json")
-	public ResponseEntity<Pessoa> cadastrarEndereco(@RequestBody Pessoa pessoa){
-		
-		for (int pos = 0; pos < pessoa.getEnderecos().size(); pos++) {
-			pessoa.getEnderecos().get(pos).setPessoa(pessoa);
-		}
-		Pessoa pessoasalvo = service.insert(pessoa);
-		return new ResponseEntity<Pessoa>(pessoasalvo,HttpStatus.OK);
-			
-	}
 }

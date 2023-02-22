@@ -37,18 +37,18 @@ public class EnderecoController {
 //		return ResponseEntity.ok().body(list);
 //	}
 
-	@GetMapping(value = "/todos")
+	@GetMapping
 	public ResponseEntity<List<Endereco>> findAll() {
 		List<Endereco> list = service.findAll();
 		return ResponseEntity.ok().body(list);
 	}
 
-	@GetMapping
-	public ResponseEntity<List<EnderecoDTO>> findAll(@RequestParam(value = "pessoa", defaultValue = "0") Long id_end) {
-		List<Endereco> list = service.findAll(id_end);
-		List<EnderecoDTO> listDto = list.stream().map(obj -> new EnderecoDTO(obj)).collect(Collectors.toList());
-		return ResponseEntity.ok().body(listDto);
-	}
+//	@GetMapping
+//	public ResponseEntity<List<EnderecoDTO>> findAll(@RequestParam(value = "pessoa", defaultValue = "0") Long id_end) {
+//		List<Endereco> list = service.findAll(id_end);
+//		List<EnderecoDTO> listDto = list.stream().map(obj -> new EnderecoDTO(obj)).collect(Collectors.toList());
+//		return ResponseEntity.ok().body(listDto);
+//	}
 
 	@GetMapping(value = "/{id}")
 	public ResponseEntity<Endereco> findById(@PathVariable Long id) {
